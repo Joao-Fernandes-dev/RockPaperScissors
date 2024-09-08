@@ -1,7 +1,3 @@
-console.log("Hello World");
-
-// create function getHumanChoice
-
 function getHumanChoice() {
     let humanChoice = prompt("PICK");
     humanChoice = humanChoice.toLowerCase();
@@ -41,7 +37,6 @@ function getComputerChoice() {
 
 let humanScore = 0;
 let computerScore = 0;
-
 
 function playRound() {
     let humanChoice = getHumanChoice();
