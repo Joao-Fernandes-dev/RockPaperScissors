@@ -77,8 +77,17 @@ function playRound() {
     console.log(`Computer score is ${computerScore}`);
 }
 
-function playMultipleRounds(i) {
-    for (i; i > 0; i--) {
+function playGame() {
+    for (i = 5; i > 0; i--) {
         playRound();
+        if (humanScore === computerScore) {
+            console.log("DRAW!");
+        }
+        if (humanScore > computerScore) {
+            console.log("Human wins!");
+        }
+        else {
+            console.log("Computer wins");
+        }  
     }
 }
