@@ -3,35 +3,82 @@ console.log("Hello World");
 // create function getHumanChoice
 
 function getHumanChoice() {
-    const choice = prompt("PICK");
-    choice = choice.toLowerCase();
+    let humanChoice = prompt("PICK");
+    humanChoice = humanChoice.toLowerCase();
 
-    if (choice === "rock") {
+    if (humanChoice === "rock") {
         console.log("You picked ROCK");
+        return 0;
     } 
-    else if (choice === "paper") {
-        console.log("You picked PAPER");        
+    else if (humanChoice === "paper") {
+        console.log("You picked PAPER");
+        return 1;        
     }
-    else if (choice === "scissors") {
-        console.log("You picked SCISSORS");     
+    else if (humanChoice === "scissors") {
+        console.log("You picked SCISSORS");
+        return 2;     
     }   
     else {
         console.log("Pick again: rock, paper or scissors");
     }
 }
 
-//function getComputerChoice() {
-
-
 function getComputerChoice() {
-    const choice = Math.floor(Math.random() * 3);
-    if (choice === 0) {
+    let computerChoice = Math.floor(Math.random() * 3);
+    if (computerChoice === 0) {
         console.log("Computer picked ROCK");
+        return computerChoice;
     } 
-    else if (choice === 1) {
-        console.log("Conmputer picked PAPER");        
+    else if (computerChoice === 1) {
+        console.log("Conmputer picked PAPER");   
+        return computerChoice;
     }
     else {
         console.log("Computer picked SCISSORS");   
+        return computerChoice;
     }  
+}
+
+let humanScore = 0;
+let computerScore = 0;
+
+
+function playRound() {
+    let humanChoice = getHumanChoice();
+    let computerChoice = getComputerChoice();
+    if (humanChoice === computerChoice) {
+        console.log("Draw");
+    }
+    else if (humanChoice === 0 && computerChoice === 1) {
+        console.log("Computer wins");
+        computerScore += 1;
+    }
+    else if (humanChoice === 0 && computerChoice === 2) {
+        console.log("Player wins");
+        humanScore += 1;
+    }
+    else if (humanChoice === 1 && computerChoice === 0) {
+        console.log("Player wins");
+        humanScore += 1;
+    }
+    else if (humanChoice === 1 && computerChoice === 2) {
+        console.log("Computer wins");
+        computerScore += 1;
+    }
+    else if (humanChoice === 2 && computerChoice === 0) {
+        console.log("Computer wins");
+        computerScore += 1;
+    }
+    else if (humanChoice === 2 && computerChoice === 1) {
+        console.log("Player wins");
+        humanScore += 1;
+    }
+    console.log(`Human score is ${humanScore}`);
+    console.log(`Computer score is ${computerScore}`);
+}
+
+function playMultipleRounds(i) {
+    for (i; i > 0; i--) {
+        playRound();
+    }
 }
