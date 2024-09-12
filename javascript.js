@@ -21,11 +21,11 @@ function getHumanChoice() {
 
 function getComputerChoice() {
     let computerChoice = Math.floor(Math.random() * 3);
-    if (computerChoice === rock) {
+    if (computerChoice === 0) {
         console.log("Computer picked ROCK");
         return rock;
     } 
-    else if (computerChoice === paper) {
+    else if (computerChoice === 1) {
         console.log("Conmputer picked PAPER");   
         return paper;
     }
@@ -38,55 +38,66 @@ function getComputerChoice() {
 let humanScore = 0;
 let computerScore = 0;
 
-function playRound() {
-    let humanChoice = getHumanChoice();
+function playRound(humanChoice) {
     let computerChoice = getComputerChoice();
     if (humanChoice === computerChoice) {
-        console.log("Draw");
+        currentRound.textContent = (
+            `This round: Draw`)
     }
     else if (humanChoice === rock && computerChoice === paper) {
-        console.log("Computer wins");
+        currentRound.textContent = (
+            `This round: Computer wins`)
         computerScore += 1;
     }
     else if (humanChoice === rock && computerChoice === scissors) {
-        console.log("Player wins");
+        currentRound.textContent = (
+            `This round: Player wins`)
         humanScore += 1;
     }
     else if (humanChoice === paper && computerChoice === rock) {
-        console.log("Player wins");
+        currentRound.textContent = (
+            `This round: Player wins`)
         humanScore += 1;
     }
     else if (humanChoice === paper && computerChoice === scissors) {
-        console.log("Computer wins");
+        currentRound.textContent = (
+            `This round: Computer wins`)
         computerScore += 1;
     }
     else if (humanChoice === scissors && computerChoice === rock) {
-        console.log("Computer wins");
+        currentRound.textContent = (
+            `This round: Computer wins`)
         computerScore += 1;
     }
     else if (humanChoice === scissors && computerChoice === paper) {
-        console.log("Player wins");
+        currentRound.textContent = (
+            `This round: Player wins`)
         humanScore += 1;
     }
-    console.log(`Human score is ${humanScore}`);
-    console.log(`Computer score is ${computerScore}`);
-}
 
-function playGame() {
-    for (i = 5; i > 0; i--) {
-        playRound();
-        if (humanScore === computerScore) {
-            console.log("DRAW!");
+    pcScore.textContent = (`Computer Score is ${computerScore}`);
+    playerScore.textContent = (`Player Score is ${humanScore}`);
+
+    if (computerScore === 5) {
+        winner.textContent = (
+            `COMPUTER WON`)
         }
-        if (humanScore > computerScore) {
-            console.log("Human wins!");
+    if (humanScore === 5) {
+        winner.textContent = (
+            `PLAYER WON`)
         }
-        else {
-            console.log("Computer wins");
-        }  
     }
-}
 
 
 
-rock.addEventListener("click", function(e) {console.log(e.target)});
+
+rock.addEventListener("click", function () {
+    console.log(`Player picked ROCK`);
+    playRound(rock);
+});
+paper.addEventListener("click", function () {
+    playRound(paper);
+});
+scissors.addEventListener("click", function () {
+    playRound(scissors);
+});
